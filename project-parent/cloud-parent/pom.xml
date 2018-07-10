@@ -6,10 +6,12 @@
         <groupId>com.wongcu</groupId>
         <artifactId>boot-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../boot-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cloud-parent</artifactId>
+    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>
@@ -28,6 +30,19 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!-- Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.wongcu</groupId>
+            <artifactId>common-component</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.wongcu</groupId>
+            <artifactId>redisson-support</artifactId>
         </dependency>
     </dependencies>
 

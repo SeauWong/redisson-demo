@@ -10,7 +10,10 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>registry-center</module>
-    <module>parent</module>
+    <module>project-parent</module>
+    <module>project-support</module>
+    <module>main-gateway</module>
+    <module>project-support/redisson-support</module>
   </modules>
 
   <name>redisson-demo</name>

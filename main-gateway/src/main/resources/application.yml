@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: main-gateway
+
+server:
+  port: 9000
+  servlet:
+    context-path: /gateway
+
+zuul:
+  servletPath: /main-gateway
+  ignored-services: '*'
+  routes:
+    user-service:
+      path: /user-service/**
+      serviceId: user-service
+      stripPrefix: false
+      sensitiveHeaders: "*"
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    register-with-eureka: true
