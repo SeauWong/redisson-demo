@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *
  * @author WongCU
  * @date 2018/7/10
  */
@@ -27,10 +26,11 @@ public class WebConfig {
 
     /**
      * 单机模式自动装配
+     *
      * @return
      */
     @Bean
-    @ConditionalOnProperty(name="redisson.address")
+    @ConditionalOnProperty(name = "redisson.address")
     RedissonClient redissonSingle() {
         Config config = new Config();
         SingleServerConfig serverConfig = config.useSingleServer()
@@ -39,7 +39,7 @@ public class WebConfig {
                 .setConnectionPoolSize(redissonProperties.getConnectionPoolSize())
                 .setConnectionMinimumIdleSize(redissonProperties.getConnectionMinimumIdleSize());
 
-        if(StringUtils.isNotBlank(redissonProperties.getPassword())) {
+        if (StringUtils.isNotBlank(redissonProperties.getPassword())) {
             serverConfig.setPassword(redissonProperties.getPassword());
         }
 

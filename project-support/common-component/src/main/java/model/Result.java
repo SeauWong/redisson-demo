@@ -3,7 +3,6 @@ package model;
 import java.io.Serializable;
 
 /**
- *
  * @author WongCU
  * @date 2018/7/10
  */
@@ -15,6 +14,24 @@ public class Result<T> implements Serializable {
     private String message;
     private String cause;
     private T data;
+
+    public static Boolean isSuccess(Result result) {
+        return null != result && "0".equals(result.getCode());
+    }
+
+    public static Result genSuccessResult(Object data) {
+        return new Result()
+                .setCode("0")
+                .setMessage("成功")
+                .setData(data);
+    }
+
+    public static Result genErrorResult(String appId, String code, String message, String cause) {
+        return new Result()
+                .setCode(appId + "-" + code)
+                .setMessage(message)
+                .setCause(cause);
+    }
 
     public String getCode() {
         return code;
@@ -50,23 +67,5 @@ public class Result<T> implements Serializable {
     public Result setData(T data) {
         this.data = data;
         return this;
-    }
-
-    public static Boolean isSuccess(Result result){
-        return null != result && "0".equals(result.getCode());
-    }
-
-    public static Result genSuccessResult(Object data) {
-        return new Result()
-                .setCode("0")
-                .setMessage("成功")
-                .setData(data);
-    }
-
-    public static Result genErrorResult(String appId, String code, String message, String cause) {
-        return new Result()
-            .setCode(appId + "-" + code)
-            .setMessage(message)
-            .setCause(cause);
     }
 }

@@ -4,7 +4,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *
  * @author WongCU
  * @date 2018/7/10
  */
@@ -19,13 +18,13 @@ public class RedissonProperties {
 
     private int database = 0;
 
-    private int connectionPoolSize = 20;
+    private int connectionPoolSize = 5;
 
-    private int connectionMinimumIdleSize=2;
+    private int connectionMinimumIdleSize = 2;
 
-    private int slaveConnectionPoolSize = 250;
+    private int slaveConnectionPoolSize = 5;
 
-    private int masterConnectionPoolSize = 250;
+    private int masterConnectionPoolSize = 5;
 
     private String[] sentinelAddresses;
 
@@ -57,6 +56,10 @@ public class RedissonProperties {
 
     public String[] getSentinelAddresses() {
         return sentinelAddresses;
+    }
+
+    public void setSentinelAddresses(String[] sentinelAddresses) {
+        this.sentinelAddresses = sentinelAddresses;
     }
 
     public void setSentinelAddresses(String sentinelAddresses) {
@@ -109,9 +112,5 @@ public class RedissonProperties {
 
     public void setDatabase(int database) {
         this.database = database;
-    }
-
-    public void setSentinelAddresses(String[] sentinelAddresses) {
-        this.sentinelAddresses = sentinelAddresses;
     }
 }

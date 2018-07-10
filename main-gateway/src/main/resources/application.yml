@@ -24,3 +24,15 @@ eureka:
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka/
     register-with-eureka: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
