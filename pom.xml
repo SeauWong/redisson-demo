@@ -15,6 +15,7 @@
         <module>main-gateway</module>
         <module>project-support/redisson-support</module>
         <module>project-support/swagger-support</module>
+        <module>project-support/mybatis-support</module>
     </modules>
 
     <name>redisson-demo</name>

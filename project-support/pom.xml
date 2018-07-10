@@ -18,6 +18,7 @@
         <module>common-component</module>
         <module>redisson-support</module>
         <module>swagger-support</module>
+        <module>mybatis-support</module>
     </modules>
 
 

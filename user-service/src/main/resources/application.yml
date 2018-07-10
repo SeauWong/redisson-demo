@@ -1,6 +1,27 @@
 spring:
   application:
     name: user-service
+  datasource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      druid:
+        url: jdbc:mysql://localhost:3306/kuibu_user?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: root
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x' from dual
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        maxOpenPreparedStatements: 20
 
 server:
   port: 8002
@@ -39,3 +60,7 @@ hystrix:
 ribbon:
   ReadTimeout: 20000
   ConnectTimeout: 20000
+
+mybatis:
+  typeAliasesPackage: com.wongcu.**.orm.entity
+  mapperLocations: classpath:com/wongcu/**/orm/mapper/*.xml

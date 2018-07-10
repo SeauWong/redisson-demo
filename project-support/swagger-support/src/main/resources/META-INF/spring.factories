@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=config.Swagger2AutoConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.wongcu.config.Swagger2AutoConfig

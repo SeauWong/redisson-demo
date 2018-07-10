@@ -10,6 +10,6 @@ import java.io.Serializable;
  */
 @Data
 public class PushUserParam implements Serializable {
-    private String id;
+    private String userId;
     private String name;
 }

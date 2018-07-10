@@ -1,4 +1,4 @@
-package config;
+package com.wongcu.config;
 
 /**
  * @author WongCU

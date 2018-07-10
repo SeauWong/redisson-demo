@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wongcu.orm.mapper.UserMapper">
+    <sql id="includeColumns">
+        <trim suffixOverrides=",">
+            user_id as userId,
+            name as name,
+            created_time as createdTime,
+            modified_time as modifiedTime,
+            access_times as accessTimes,
+        </trim>
+
+    </sql>
+    <sql id="dynamicWhere">
+        <where>
+            1 = 1
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="createdTimeStart != null">
+                and created_time <![CDATA[ >= ]]> #{createdTimeStart,jdbcType=BIGINT}
+            </if>
+            <if test="createdTimeEnd != null">
+                and created_time <![CDATA[ <= ]]> #{createdTimeEnd,jdbcType=BIGINT}
+            </if>
+            <if test="createdTime != null and createdTime != ''">
+                and created_time = #{createdTime,jdbcType=BIGINT}
+            </if>
+            <if test="modifiedTimeStart != null">
+                and modified_time <![CDATA[ >= ]]> #{modifiedTimeStart,jdbcType=BIGINT}
+            </if>
+            <if test="modifiedTimeEnd != null">
+                and modified_time <![CDATA[ <= ]]> #{modifiedTimeEnd,jdbcType=BIGINT}
+            </if>
+            <if test="modifiedTime != null and modifiedTime != ''">
+                and modified_time = #{modifiedTime,jdbcType=BIGINT}
+            </if>
+            <if test="accessTimes != null and accessTimes != ''">
+                and access_times = #{accessTimes,jdbcType=INTEGER}
+            </if>
+        </where>
+    </sql>
+
+    <select id="query" parameterType="com.wongcu.orm.param.UserQueryBean"
+            resultType="com.wongcu.orm.entity.UserEntity">
+        select
+        <include refid="includeColumns"/>
+        from user
+        <include refid="dynamicWhere"/>
+        <if test="orderByStr != null and '' != orderByStr">
+            <bind name="orderByStr" value="orderByStr.replaceAll('\\+',' ASC').replaceAll('-',' DESC')"/>
+            order by ${orderByStr}
+        </if>
+    </select>
+
+    <select id="queryById" parameterType="java.lang.String"
+            resultType="com.wongcu.orm.entity.UserEntity">
+        select
+        <include refid="includeColumns"/>
+        from user
+        where
+        user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <update id="update" parameterType="com.wongcu.orm.entity.UserEntity">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userId != null and userId != ''">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createdTime != null and createdTime != ''">
+                created_time = #{createdTime,jdbcType=BIGINT},
+            </if>
+            <if test="modifiedTime != null and modifiedTime != ''">
+                modified_time = #{modifiedTime,jdbcType=BIGINT},
+            </if>
+            <if test="accessTimes != null and accessTimes != ''">
+                access_times = #{accessTimes,jdbcType=INTEGER},
+            </if>
+        </trim>
+        <where>
+            user_id = #{userId,jdbcType=VARCHAR}
+        </where>
+    </update>
+
+    <insert id="insert" parameterType="com.wongcu.orm.entity.UserEntity">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            user_id,
+            name,
+            created_time,
+            modified_time,
+            access_times,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{userId,jdbcType=VARCHAR},
+            #{name,jdbcType=VARCHAR},
+            #{createdTime,jdbcType=BIGINT},
+            #{modifiedTime,jdbcType=BIGINT},
+            #{accessTimes,jdbcType=INTEGER},
+        </trim>
+    </insert>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from user
+        where
+        user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+</mapper>

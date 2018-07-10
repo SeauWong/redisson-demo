@@ -1,4 +1,4 @@
-package config;
+package com.wongcu.config;
 
 import com.google.common.base.Predicates;
 import org.springframework.beans.factory.annotation.Autowired;

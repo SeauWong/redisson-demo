@@ -28,8 +28,7 @@ public class UserServiceController {
 
     @PostMapping("/push")
     public Result<Boolean> pushUser(@RequestBody PushUserParam param) {
-//        param.setId(String.valueOf(random.nextInt(100)));
-        param.setId("1");
+        param.setUserId(String.valueOf(random.nextInt(5)));
         log.debug("接收到客户:{}", param);
         try {
             return Result.genSuccessResult(userService.pushUser(param));
